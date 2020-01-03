@@ -61,7 +61,7 @@ Download and install Übersicht from their website: [http://tracesof.net/uebersi
 Then simply clone this repository into your Übersicht widgets folder.
 
 ```shell
-git clone https://github.com/MrGVSV/mybar.git ~/Library/Application\ Support/Übersicht/widgets/
+git clone https://github.com/MrGVSV/mybar.git ~/Library/Application\ Support/Übersicht/widgets/mybar/
 ```
 
 
