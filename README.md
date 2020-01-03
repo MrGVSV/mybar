@@ -61,8 +61,10 @@ Download and install Übersicht from their website: [http://tracesof.net/uebersi
 Then simply clone this repository into your Übersicht widgets folder.
 
 ```shell
-git clone https://github.com/MrGVSV/mybar.git ~/Library/Application\ Support/Übersicht/widgets/
+git clone https://github.com/MrGVSV/mybar.git ~/Library/Application\ Support/Übersicht/widgets/mybar/
 ```
+
+(Also be sure to set Automatically Hide and Show the Menu Bar in Preferences > General if you want to "replace" it.)
 
 
 
