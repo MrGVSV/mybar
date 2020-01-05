@@ -11,7 +11,9 @@ import {
 	Time,
 	Wifi
 } from './src/components/Components'
-export const refreshFrequency = 1000
+
+
+export const refreshFrequency = 500
 
 
 // === Root Element Style === //
@@ -116,22 +118,27 @@ WIFI_STATUS=$(if [ -n "$(/System/Library/PrivateFrameworks/Apple80211.framework/
 # === SPOTIFY === #
 # Uses <JSONQuote> to get around weird quote escape error
 SPOTIFY=$(
-	osascript <<EOD | sed -e 's/<JSONQuote>/\"/g'
-	if application "Spotify" is running then	
-		tell application "Spotify"
-			set mSong to the name of the current track
-			set mArtist to the artist of the current track
-			set mArtwork to the artwork url of the current track
-			set mDuration to the duration of the current track
-			set mPosition to the player position
-			set mState to the player state
-			set mRepeat to the repeating
-			set mShuffle to the shuffling
-		end tell
-		return "{<JSONQuote>song<JSONQuote>: <JSONQuote>" & mSong & "<JSONQuote>, <JSONQuote>artist<JSONQuote>: <JSONQuote>" & mArtist & "<JSONQuote>, <JSONQuote>artwork<JSONQuote>: <JSONQuote>" & mArtwork & "<JSONQuote>, <JSONQuote>duration<JSONQuote>: <JSONQuote>" & mDuration & "<JSONQuote>, <JSONQuote>position<JSONQuote>: <JSONQuote>" & mPosition & "<JSONQuote>, <JSONQuote>state<JSONQuote>: <JSONQuote>" & mState & "<JSONQuote>, <JSONQuote>repeat<JSONQuote>: <JSONQuote>" & mRepeat & "<JSONQuote>, <JSONQuote>shuffle<JSONQuote>: <JSONQuote>" & mShuffle & "<JSONQuote>}"
-	else
-		return "{}"
-	end if
+	osascript -l JavaScript <<EOD | sed -e 's/<JSONQuote>/\"/g'
+	var spotify = Application('Spotify')
+	if (spotify.running()) {
+		if (spotify.currentTrack() !== null) {
+			
+		var song = spotify.currentTrack().name().replace(/\"/g, "\\\'")
+		var artist = spotify.currentTrack().artist().replace(/\"/g, "\\\'")
+		var artwork = spotify.currentTrack().artworkUrl()
+		var duration = spotify.currentTrack().duration()
+		var position = spotify.playerPosition()
+		var state = spotify.playerState()
+		var shuffle = spotify.shuffling()
+		var repeat = spotify.repeating()
+		
+		"{<JSONQuote>song<JSONQuote>: <JSONQuote>" + song + "<JSONQuote>, <JSONQuote>artist<JSONQuote>: <JSONQuote>" + artist + "<JSONQuote>, <JSONQuote>artwork<JSONQuote>: <JSONQuote>" + artwork + "<JSONQuote>, <JSONQuote>duration<JSONQuote>: <JSONQuote>" + duration + "<JSONQuote>, <JSONQuote>position<JSONQuote>: <JSONQuote>" + position + "<JSONQuote>, <JSONQuote>state<JSONQuote>: <JSONQuote>" + state + "<JSONQuote>, <JSONQuote>repeat<JSONQuote>: <JSONQuote>" + repeat + "<JSONQuote>, <JSONQuote>shuffle<JSONQuote>: <JSONQuote>" + shuffle + "<JSONQuote>}"
+		} else {
+			"{}"
+		}
+	} else {
+		"{}"
+	}
 EOD
 )
 

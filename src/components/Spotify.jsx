@@ -116,8 +116,7 @@ export default class Spotify extends React.Component {
     
         // --- Artwork --- //
         let artwork;
-        if (cfg.displayArtwork !== SpotifyStyle.ArtDisplay.NONE) {
-            
+        if (cfg.displayArtwork !== SpotifyStyle.ArtDisplay.NONE && info['artwork'] !== 'null') {            
             let ArtworkImg = styled('img')`
                 height: ${cfg.displayArtwork === SpotifyStyle.ArtDisplay.SHOW ? '80' : '75'}%;
                 vertical-align: top;
