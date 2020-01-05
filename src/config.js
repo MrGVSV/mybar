@@ -90,6 +90,8 @@ export const config = {
         displayOrder: "IS-AT",
         // The color of the Song text
         displaySong: "#fff",
+        // Removes all trailing song info after the '('
+        shortenSong: true,
         // The color of the Artist text
         displayArtist: "#fff",
         // Determines whether and how to display the Album Artwork

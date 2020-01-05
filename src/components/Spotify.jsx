@@ -44,8 +44,15 @@ export default class Spotify extends React.Component {
                 color: ${cfg.displaySong};
                 padding: 0 ${cfg.padding};
             `
+
+            // -- Trim Feature List, Etc. -- //
+            let songName = info['song'];
+            if (cfg.shortenSong) {
+                songName = songName.substring(0, songName.indexOf('(')).trim()
+            }
+
             song = (
-            <SongSpan>{info['song']}</SongSpan>
+            <SongSpan>{songName}</SongSpan>
             )
         }
     

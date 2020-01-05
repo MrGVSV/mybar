@@ -1,4 +1,4 @@
-import * as Settings from "../enums";
+import * as Settings from "./enums";
 
 // === Render Order === //
 // This controls which widgets are rendered to the screen.
@@ -50,7 +50,7 @@ export const config = {
         colorSteps: Settings.BatteryStyle.Colors.step([
             [0.25, Settings.Colors.RED],
             [0.5, Settings.Colors.YELLOW],
-            [1.0, '#ba59fa'],
+            [1.0, Settings.Colors.GREEN],
         ]),
         // The opacity of the ticks that are empty
         unfilledOpacity: 0.15,
@@ -90,6 +90,8 @@ export const config = {
         displayOrder: "IS-AT",
         // The color of the Song text
         displaySong: "#e90",
+        // Removes all trailing song info after the '('
+        shortenSong: true,
         // The color of the Artist text
         displayArtist: "#fe8",
         // Determines whether and how to display the Album Artwork
@@ -135,7 +137,7 @@ export const config = {
         //    * any: Any other character can be used as regular text
         displayOrder: '[w][m][D] H:p:s ?',
         // Map a color to each command
-        colors: {'w': '#f99', 'm': '#b9f', 'D': '#9f7', 'H':'#aaa', 'p':'#888', 's':'#555', '?':'#222b'}
+        colors: {'w': '#f99', 'm': '#b9f', 'D': '#9f7', 'H':'#aba', 'p':'#898', 's':'#676', '?':'#565d'}
     },
     // === Command: 'W' === //
     Wifi: {
