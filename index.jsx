@@ -119,8 +119,9 @@ WIFI_STATUS=$(if [ -n "$(/System/Library/PrivateFrameworks/Apple80211.framework/
 # Uses <JSONQuote> to get around weird quote escape error
 SPOTIFY=$(
 	osascript -l JavaScript <<EOD | sed -e 's/<JSONQuote>/\"/g'
-	var spotify = Application('Spotify')
-	if (spotify.running()) {
+	
+	if (Application('Spotify').running()) {
+		var spotify = Application('Spotify')
 		if (spotify.currentTrack() !== null) {
 			
 		var song = spotify.currentTrack().name().replace(/\"/g, "\\\'")
