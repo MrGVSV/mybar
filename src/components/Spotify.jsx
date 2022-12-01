@@ -47,7 +47,7 @@ export default class Spotify extends React.Component {
 
             // -- Trim Feature List, Etc. -- //
             let songName = info['song'];
-            if (cfg.shortenSong) {
+            if (cfg.shortenSong && songName.includes('(')) {
                 songName = songName.substring(0, songName.indexOf('(')).trim()
             }
 
